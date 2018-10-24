@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up - DevBlogger</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Unica+One" rel="stylesheet"> 
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <nav>
+        <div class='nav-logo'>
+            <a class='text-primary' href='../index.html'><h1>DevBlogger</h1></a>
+        </div>
+        <div class='nav-links'>
+            <a href='signin.html'><button type='button' class='btn btn-flat'>Sign In</button></a>
+        </div>
+    </nav>
+    <main class='fill-container centerflex vflex user-background'>
+        <div class='form-container'>
+            <h2 class='text-primary'>Sign up.</h2>
+            <p class='quote'>Step 1 to becoming awesome.</p>
+            <form>
+                <div class='form-field'>
+                    <label for='email'>E-mail</label>
+                    <input type='email' name='email' id='email' placeholder='john.doe@example.com'>
+                </div>
+                <div class='form-field'>
+                    <label for='pword'>Password</label>
+                    <input type='password' name='pword' id='pword'>
+                </div>
+                <div class='form-field'>
+                    <button type='button' id='btn-signin' class='btn btn-primary'>Sign in</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/signin.js"></script>
+</body>
+</html>
