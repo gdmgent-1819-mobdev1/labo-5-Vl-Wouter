@@ -1,4 +1,4 @@
-var config = {
+const config = {
     apiKey: "AIzaSyBlGyQkZwwX_WBoifrJaOlLhMjt-In4P2E",
     authDomain: "mobdev-1-labo5.firebaseapp.com",
     databaseURL: "https://mobdev-1-labo5.firebaseio.com",
