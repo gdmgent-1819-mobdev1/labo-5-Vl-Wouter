@@ -1,0 +1,157 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", "Helvetica", sans-serif;
+
+}
+
+body {
+    background: var(--light);
+    color: var(--dark);
+}
+
+a:link {
+    text-decoration: none;
+}
+
+:root {
+    --gray: #87858a;
+    --dark: #252627;
+    --light: #fff9fb;
+    --primary: #0cce6b;
+    --secondary: #4b88a2;
+}
+
+/* Text Colors */
+.text-primary {
+    color: var(--primary);
+}
+
+.text-secondary {
+    color: var(--secondary);
+}
+
+.text-light {
+    color: var(--light);
+}
+
+.text-gray {
+    color: var(--gray);
+}
+
+/* Containers */
+.fill-container {
+    width: 100vw;
+    height: calc(100vh - 60px);
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Navigation */
+nav {
+    background: var(--dark);
+    height: 60px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 90vw;
+    padding: 0 5vw;
+    align-items: center;
+
+    font-family: "Unica One", sans-serif;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 14px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--light);
+    font-weight: 700;
+}
+
+.btn-flat {
+    color: var(--primary);
+}
+
+/* Unassigned */
+
+.nav-logo {
+    color: var(--primary);
+}
+
+.greeting {
+    text-align: center;
+}
+
+.posts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.user-background {
+    background: linear-gradient(60deg, #0cce6b99,#25262799) , url('../assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.centerflex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vflex {
+    flex-flow: column nowrap;
+}
+
+.form-container {
+    width: 20%;
+    padding: 2% 4%;
+    background: var(--light);
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+.form-field {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 2% 0;
+}
+
+label {
+    font-weight: 700;
+}
+
+input {
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 6px;
+    font-size: 1.2rem;
+    font-family: "Open Sans", "Helvetica", sans-serif;
+    font-weight: 300;
+}
+
+.quote {
+    font-style: italic;
+    font-weight: 300;
+}
