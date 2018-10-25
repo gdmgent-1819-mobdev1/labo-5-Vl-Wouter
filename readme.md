@@ -2,7 +2,8 @@
 
 ## Todo
 
-* [ ] Create index, login and register pages
-* [ ] Connect to Firebase
-* [ ] Implement validation and registering / logging in users
+* [x] Create index, login and register pages
+* [x] Connect to Firebase
+* [x] Login / Logout
+* [ ] Register users
 * [ ] To be continued...

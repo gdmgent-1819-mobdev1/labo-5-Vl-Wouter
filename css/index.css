@@ -155,3 +155,7 @@ input {
     font-style: italic;
     font-weight: 300;
 }
+
+.hidden {
+    display: none;
+}
