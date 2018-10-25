@@ -8,27 +8,27 @@ const config = {
     messagingSenderId: "667824028304"
 };
 firebase.initializeApp(config);
-let signin = document.querySelector('#btn-signin');
+const signup = document.querySelector('#btn-signup');
+const auth = firebase.auth();
 
-loginUser = () => {
-    const userMail = document.querySelector('#email').value;
-    const pass = document.querySelector('#pword').value;
-    const errorField = document.querySelector('.error');
-    const auth = firebase.auth();
+// signup function
+register = () => {
+    const userMail = document.querySelector('#email');
+    const pass = document.querySelector('#pword');
 
-    auth.signInWithEmailAndPassword(userMail, pass)
+    // Create new user with above credentials
+    auth.createUserWithEmailAndPassword(userMail, pass)
     .catch(error => {
-        errorField.innerHTML = error.message;
+        document.querySelector('.error').innerHTML = error.message;
     });
 
+    // if the user is logged in, go back to the index page
     auth.onAuthStateChanged(user => {
         if(user) {
             window.location.replace('../index.html')
         }
     });
-
-
 }
 
-// Event Listener
-signin.addEventListener('click', loginUser);
+// event listener
+signup.addEventListener('click', register);
