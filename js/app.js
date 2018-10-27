@@ -22,6 +22,8 @@ const createbtn = document.querySelector('#toggleEditor');
 const publishbtn = document.querySelector('#createPost');
 let editor;
 
+posts.innerHTML = '';
+
 if(logoutbtn != null) {
     document.querySelector('#logoutbtn').addEventListener('click', () => {
         auth.signOut().catch(error => {
@@ -31,6 +33,7 @@ if(logoutbtn != null) {
 }
 
 auth.onAuthStateChanged(user => {
+    getPosts();
     if(user) {
         console.log('logged in');
         if(user.displayName == null) {
@@ -39,6 +42,7 @@ auth.onAuthStateChanged(user => {
             })
             .catch(error => console.log(error.message));
         }
+        document.querySelector('.postbuttons').innerHTML = `<button type='button' id='toggleEditor' class='btn btn-primary'>Create a post</button>`
         if(loginbtns != null && logoutbtn != null) {
             loginbtns.forEach(btn => {
                 btn.classList.add('hidden');
@@ -53,8 +57,6 @@ auth.onAuthStateChanged(user => {
         }
     } else {
         console.log('logged out');
-        console.log(loginbtns);
-        console.log(logoutbtn);
         if(loginbtns != null && logoutbtn != null) {
             loginbtns.forEach(btn => {
                 btn.classList.remove('hidden');
@@ -75,33 +77,66 @@ ClassicEditor
 .then( neweditor => editor = neweditor)
 .catch( error => console.log(error));
 
-db.collection('posts').get()
-.then((querySnapshot) => {
-    if(querySnapshot.empty) {
-        posts.innerHTML = `<p class='text-gray'>There are no posts at the moment...</p>`
-    } else {
-        querySnapshot.forEach((doc) => {
-            console.log(doc);
-        })
-    }
-});
+function getPosts() {
+    db.collection('posts').get()
+    .then((querySnapshot) => {
+        if(querySnapshot.empty) {
+            console.log('This bitch empty');
+        } else {
+            querySnapshot.forEach((doc) => {
+                let data = doc.data();
+                let buttons;
+                // TODO: Make actual post
+                if(data.author == firebase.auth().currentUser.uid) {
+                    buttons = `
+                    <div class='post-actions'>
+                        <button type='button' class='btn btn-flat btn-small' id='deletePost'>Edit</button>
+                        <button type='button' class='btn btn-flat btn-small' id='deletePost'>Delete</button>
+                    </div>
+                    `
+                } else {
+                    buttons = ``
+                }
+                posts.innerHTML += `<div class='post'>
+                    <div class='post-header'>
+                        <h1>${data.title}</h1>
+                        <p>By <span class='author'>${data.author}</span> &bull; <span class='date'>${data.time}</span></p>
+                    </div>
+                    ${buttons}
+                    <div class='post-content'>
+                        ${data.content}
+                    </div>
+                </div>`
+            });
+        }
+    });
+}
 
-createbtn.addEventListener('click', () => {
-    document.querySelector('.posteditor').classList.toggle('hidden');
-});
+document.addEventListener('click', (e) => {
+    (e.target && e.target.id == 'toggleEditor') ? document.querySelector('.posteditor').classList.toggle('hidden') : '';
+})
+
+// createbtn.addEventListener('click', () => {
+//     document.querySelector('.posteditor').classList.toggle('hidden');
+// });
 
 publishbtn.addEventListener('click', () => {
     const title = document.querySelector('form #title').value;
     const user = firebase.auth().currentUser.displayName;
     const userID = firebase.auth().currentUser.uid;
+    const content = editor.getData();
+    const posts = db.collection('posts');
+    let date = new Date;
+    const posttime = date.getTime();
 
-    db.collection('posts').add({
-        author: user,
-        author_id: userID,
+    posts.add({
         title: title,
-        content: editor.getData()
+        author: user,
+        uid: userID,
+        content: content,
+        time: posttime
     })
-    .then(docRef => console.log(`Created post: ${docRef.id}`))
+    .then((doc_id) => console.log(doc_id.id + 'created!'))
     .catch(error => console.log(error.message));
 
 });

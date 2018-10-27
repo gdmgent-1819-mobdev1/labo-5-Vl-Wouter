@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Log in - DevBlog</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <!-- Login Page CSS -->
+    <link rel="stylesheet" href="../css/login.css">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+</head>
+<body>
+    <div class='fill-container centerflex gradient'>
+        <div class='login-container'>
+            <div class='login-form'>
+                <h1>Log in.</h1>
+                <form id='login'>
+                    <div class='input-field'>
+                        <label for='email'>Email</label>
+                        <input type='email' id='email' name='email' placeholder='john.doe@gmail.com'>
+                    </div>
+                    <div class="input-field">
+                        <label for="pword">Password</label>
+                        <input type='password' id='pword' name='pword'>
+                    </div>
+                    <p class='error'></p>
+                    <button type='button' id='btn-login' class='btn primary'>Login</button>
+                    <button type='button' id='goHome' class='btn text-primary'>Go back</button>
+                </form>
+            </div>
+            <div class='register-form'>
+                <div class='register-label'>
+                    <button type='button' class='btn reglabel'>Register</button>
+                </div>
+                <div class='form-content hidden'>
+                    <h1>Or Register here.</h1>
+                    <form id='register'>
+                        <div class="input-field">
+                            <label for="username">Username</label>
+                            <input type='text' id='username' placeholder='JohnDoe'>
+                        </div>
+                        <div class='input-field'>
+                            <label for='email'>Email</label>
+                            <input type='email' id='email' name='email' placeholder='john.doe@gmail.com'>
+                        </div>
+                        <div class="input-field">
+                            <label for="pword">Password</label>
+                            <input type='password' id='pword' name='pword'>
+                        </div>
+                        <p class='error'></p>
+                        <button type='button' id='btn-register' class='btn secondary'>Register</button>
+                        <button type='button' id='cancelReg' class='btn text-secondary'>Sign in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/firebase-setup.js"></script>
+    <script src="../js/login-animation.js"></script>
+    <script src="../js/login.js"></script>
+</body>
+</html>
