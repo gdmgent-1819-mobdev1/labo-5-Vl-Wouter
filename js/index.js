@@ -12,7 +12,10 @@ let editor;
 // Log out the current user
 logoutUser = () => {
     firebase.auth().signOut()
-    .then(() => window.location.reload())
+    .then(() =>{
+        fireNotification(`Signed out!`, `Thanks for your visit, we hope to see you back soon.`)
+        window.location.reload();
+    })
     .catch(error => console.log(error.message));
 }
 
@@ -41,7 +44,10 @@ newPost = () => {
         time: time,
         uid: uid
     })
-    .then(() => resetForm())
+    .then(() => {
+        fireNotification(`Post created!`, `'${title}' has been created and can be seen by everyone.`)
+        resetForm()
+    })
     .catch(error => console.log(error.message));
 }
 
@@ -60,6 +66,15 @@ editPost = (id) => {
     });
 }
 
+// Delete a post
+deletePost = (id) => {
+   db.collection('posts').doc(id).delete()
+   .then(() => {
+       fireNotification(`Aww...`, `We're sad to see your post go, but hopeful for new content!`)
+   })
+   .catch(error => alert('error')); 
+}
+
 // Update the edited post
 updatePost = () => {
     const title = document.querySelector('#postcreation #title').value;
@@ -72,6 +87,7 @@ updatePost = () => {
     })
     .then(() => {
         resetForm();
+        fireNotification(`Updated: ${title}`, `We've updated this post for you!`)
     })
     .catch(error => alert(error.message));
 }
@@ -79,6 +95,16 @@ updatePost = () => {
 // Add missing 0 in time
 checkZero = (value) => {
     return (value < 10) ? `0${value}` : value;
+}
+
+// Re-send verification email
+verifyMe = () => {
+    firebase.auth().currentUser.sendEmailVerification()
+    .then(() => {
+        alertArea.innerHTML = ``;
+        fireNotification(`Email sent!`, `Please check your email inbox for your new verification email`);
+    })
+    .catch(error => alert(error.message));
 }
 
 firebase.auth().onAuthStateChanged((user) => {
@@ -110,7 +136,7 @@ ClassicEditor
     editor = neweditor;
 })
 .catch( error => {
-    console.error( error );
+    console.log( error );
 } );
 
 const posts = db.collection('posts').orderBy('time', 'desc');
@@ -127,7 +153,6 @@ posts.onSnapshot((snapshot) => {
         snapshot.forEach(doc => {
             let data = doc.data();
             let posttime = new Date(data.time);
-            console.log(posttime);
             let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
             let time = `${months[posttime.getMonth()]} ${posttime.getDate()}, ${posttime.getFullYear()} &bull; ${checkZero(posttime.getHours())}:${checkZero(posttime.getMinutes())}`;
             let postactions = '';
@@ -158,12 +183,21 @@ posts.onSnapshot((snapshot) => {
 
 // Event Listeners
 document.addEventListener('click', (event) => {
-    if(event.target && event.target.id == 'logout') {
-        logoutUser();
-    }
-    if(event.target && event.target.classList.contains('editPost')) {
-        let post_id = event.target.id.split('_')[1];
-        editPost(post_id);
+    if(event.target) {
+        if(event.target.id == 'logout') {
+            logoutUser();
+        }
+        if(event.target.classList.contains('editPost')) {
+            let post_id = event.target.id.split('_')[1];
+            editPost(post_id);
+        }
+        if(event.target.classList.contains('deletePost')) {
+            let post_id = event.target.id.split('_')[1];
+            deletePost(post_id);
+        }
+        if(event.target.id == 'verifyMe') {
+            verifyMe();
+        }
     }
 });
 

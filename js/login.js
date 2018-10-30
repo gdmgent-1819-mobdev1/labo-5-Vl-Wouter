@@ -15,7 +15,11 @@ loginUser = () => {
     const pass = document.querySelector('#login #pword').value;
 
     firebase.auth().signInWithEmailAndPassword(email, pass)
-    .then(() => toIndex())
+    // TODO: Fire Notification
+    .then(() => {
+        fireNotification(`Logged in!`, `You have successfully been logged in! Now go ahaead and post!`);
+        toIndex();
+    })
     .catch((error) => {
         loginError.innerHTML = `Error: ${error.message}`;
     });
@@ -35,6 +39,8 @@ registerUser = () => {
         })
         auth.currentUser.sendEmailVerification()
         .then(() => {
+            // TODO: Fire Notification
+            fireNotification(`Registered!`, `You still need to verify your email, but apart from that we successfully created your account!`);
             toIndex();
         })
         .catch(error => alert(error.message));

@@ -10,6 +10,9 @@
 * [x] Add Ckeditor
 * [x] Allow post creation
 * [x] Allow post edits
+* [x] Allow post delete
 * [x] Send verification email on register
-* [ ] Re-send verification email on warning
-* [ ] Fire notifications on actions
+* [ ] Re-send verification email on warning (doesn't seem to work properly)
+* [x] Fire notifications on actions
+* [ ] Forgot Password flow
+* [ ] **Extra:** Google Log-In
