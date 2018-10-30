@@ -1,8 +1,12 @@
 // Animating elements
+const loginCont = document.querySelector('.login-container');
 const registerForm = document.querySelector('.register-form');
 const registerContent = document.querySelector('.form-content');
 const registerLabel = document.querySelector('.register-label');
+const forgotPw = document.querySelector('#login #forgotPw');
+const forgotCont = document.querySelector('.forgotten-container');
 const cancelRegister = document.querySelector('#cancelReg');
+const backtoLogBtn = document.querySelector('#backToLogIn');
 
 // Function to toggle classes
 classToggle = (element, classname, event) => {
@@ -35,6 +39,19 @@ toggleRegister = () => {
 
 }
 
+// Animate coming in of forget screen
+toggleForgot = () => {
+    if(!loginCont.classList.contains('login-container--left')) {
+        classToggle(loginCont, 'login-container--left', 'add');
+        classToggle(forgotCont, 'forgotten-container--right', 'remove');
+    } else {
+        classToggle(loginCont, 'login-container--left', 'remove');
+        classToggle(forgotCont, 'forgotten-container--right', 'add');
+    }
+}
+
 
 // Event Listeners
 registerForm.addEventListener('click', toggleRegister);
+forgotPw.addEventListener('click', toggleForgot);
+backtoLogBtn.addEventListener('click', toggleForgot);

@@ -27,6 +27,9 @@
                         <label for="pword">Password</label>
                         <input type='password' id='pword' name='pword'>
                     </div>
+                    <div class='input-field'>
+                        <button type='button' id='forgotPw' class='btn text-primary'>I forgot my password</button>
+                    </div>
                     <p class='error'></p>
                     <button type='button' id='btn-login' class='btn primary'>Login</button>
                     <button type='button' id='goHome' class='btn text-primary'>Go back</button>
@@ -57,6 +60,17 @@
                     </form>
                 </div>
             </div>
+        </div>
+        <div class='forgotten-container forgotten-container--right'>
+            <p>So... You forgot your password? No worries, just type your email here and we'll send you a link to recover it!</p>
+            <form id='forgotpass'>
+                <div class="input-field">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="forgotEmail">
+                </div>
+                <button type='button' id='sendHelp' class='btn primary'>Recover password</button>
+                <button type='button' id='backToLogIn' class='btn text-primary'>Go back</button>
+            </form> 
         </div>
     </div>
     <script src="../js/firebase-setup.js"></script>

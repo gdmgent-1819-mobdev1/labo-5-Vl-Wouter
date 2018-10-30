@@ -15,6 +15,7 @@ html, body {
     height: 100vh;
     font-family: "Montserrat", sans-serif;
     color: var(--black);
+    overflow-x: hidden;
 }
 
 .login-form h1 {
@@ -39,7 +40,7 @@ html, body {
 .login-container {
     position: relative;
     width: 30%;
-    height: 350px;
+    height: 400px;
     padding: 2%;
     background: var(--white);
     border-radius: 6px;
@@ -49,6 +50,37 @@ html, body {
     -o-border-radius: 6px;
     box-shadow: 0 0 30px #00000030;
     overflow: hidden;
+    /*Transform properties*/
+    transform: translateX(0);
+    transition: transform 300ms ease-in-out;
+    will-change: transform;
+}
+
+.login-container--left {
+    transform: translateX(-100vw);
+    transition: transform 300ms ease-in-out;
+    will-change: transform;
+}
+
+.forgotten-container {
+    position: absolute;
+    width: 30%;
+    height: auto;
+    padding: 2%;
+    background: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 0 30px #00000030;
+    overflow: hidden;
+
+    transform: translateX(0);
+    transition: transform 300ms ease-in-out;
+    will-change: transform;
+}
+
+.forgotten-container--right {
+    transform: translateX(100vw);
+    transition: transform 300ms ease-in-out;
+    will-change: transform;
 }
 
 .input-field {

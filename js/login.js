@@ -4,6 +4,7 @@ const loginError = document.querySelector('#login .error');
 const registerBtn = document.querySelector('#register #btn-register');
 const registerError = document.querySelector('#register .error');
 const goHome = document.querySelector('#goHome');
+const recoverBtn = document.querySelector('#sendHelp');
 
 // Go Home function
 toIndex = () => {
@@ -15,7 +16,6 @@ loginUser = () => {
     const pass = document.querySelector('#login #pword').value;
 
     firebase.auth().signInWithEmailAndPassword(email, pass)
-    // TODO: Fire Notification
     .then(() => {
         fireNotification(`Logged in!`, `You have successfully been logged in! Now go ahaead and post!`);
         toIndex();
@@ -26,6 +26,18 @@ loginUser = () => {
     
 }
 
+// Recover password
+recoverPass = () => {
+    const email = document.querySelector('#forgotEmail').value;
+    firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+        fireNotification(`Help is on the way`, `An email with instructions to recover your password has been sent.`);
+        toIndex();
+    })
+    .catch(error => alert(error.message));
+}
+
+// Register User
 registerUser = () => {
     const email = document.querySelector('#register #email').value;
     const pass = document.querySelector('#register #pword').value;
@@ -39,7 +51,6 @@ registerUser = () => {
         })
         auth.currentUser.sendEmailVerification()
         .then(() => {
-            // TODO: Fire Notification
             fireNotification(`Registered!`, `You still need to verify your email, but apart from that we successfully created your account!`);
             toIndex();
         })
@@ -53,3 +64,4 @@ registerUser = () => {
 goHome.addEventListener('click', toIndex);
 loginBtn.addEventListener('click', loginUser);
 registerBtn.addEventListener('click', registerUser);
+recoverBtn.addEventListener('click', recoverPass);

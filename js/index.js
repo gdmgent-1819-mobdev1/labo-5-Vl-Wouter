@@ -23,9 +23,10 @@ logoutUser = () => {
 resetForm = () => {
     submitPost.classList.toggle('hidden');
     updatePostBtn.classList.toggle('hidden');
-    postCreator.classList.remove('postcreator--open');
+    toggleEditor();
     editor.setData('');
     document.querySelector('#postcreation #title').value = ``;
+
 }
 
 // Publish new post
@@ -56,7 +57,7 @@ editPost = (id) => {
     window.scrollTo(0, 0);
     submitPost.classList.toggle('hidden');
     updatePostBtn.classList.toggle('hidden');
-    postCreator.classList.add('postcreator--open');
+    toggleEditor();
     let post = db.collection('posts').doc(id);
     post.get().then((doc) => {
         let data = doc.data();
@@ -115,7 +116,7 @@ firebase.auth().onAuthStateChanged((user) => {
         postCreator.classList.remove('hidden');
         if(!user.emailVerified) {
             alertArea.innerHTML = `
-            <div class='alerts_warning'><strong><i class="fas fa-exclamation-triangle"></i>Verification: </strong> Make sure to verify your email address. <a href='' id='verifyMe'>Re-send verification email</a></div>
+            <div class='alerts_warning'><strong><i class="fas fa-exclamation-triangle"></i>Verification: </strong> Make sure to verify your email address. <a href='' id='verifyMe'>Re-send verification email</a><button type='button' class='btn' id='closeAlert'><i class="fas fa-times"></i></button></div>
             `
             setTimeout(() => {
                 alertArea.innerHTML = ``;
@@ -197,6 +198,9 @@ document.addEventListener('click', (event) => {
         }
         if(event.target.id == 'verifyMe') {
             verifyMe();
+        }
+        if(event.target.id == 'closeAlert') {
+            alertArea.innerHTML = ``;
         }
     }
 });
