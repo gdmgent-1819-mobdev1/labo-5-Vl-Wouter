@@ -25,16 +25,19 @@ loginUser = () => {
 registerUser = () => {
     const email = document.querySelector('#register #email').value;
     const pass = document.querySelector('#register #pword').value;
-    const username = document.querySelector('#register #username');
+    const username = document.querySelector('#register #username').value;
+    const auth = firebase.auth();
 
-    firebase.auth().createUserWithEmailAndPassword(email, pass)
+    auth.createUserWithEmailAndPassword(email, pass)
     .then(() => {
-        firebase.auth().currentUser.updateProfile({
-            displayname: username
-        }).then(() => {
-            window.location.replace('../index.html');
+        auth.currentUser.updateProfile({
+            displayName: username
         })
-        .catch(error => console.log(error.message));
+        auth.currentUser.sendEmailVerification()
+        .then(() => {
+            toIndex();
+        })
+        .catch(error => alert(error.message));
     })
     .catch(error => {
         registerError.innerHTML = `Error: ${error.message}`;

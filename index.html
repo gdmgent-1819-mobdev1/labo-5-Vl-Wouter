@@ -7,6 +7,7 @@
     <title>DevBlog</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" href="css/index.css">
     <!-- CKEditor -->
@@ -15,6 +16,9 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
 </head>
 <body>
+    <div class='alerts'>
+
+    </div>
     <nav class='navbar'>
         <div class='nav-logo'>
             <h1>DevBlog</h1>
@@ -35,9 +39,14 @@
                     <label for='title'>Title: </label>
                     <input type='text' id='title' placeholder='A very interesting post'>
                 </div>
-                    <textarea id='creator'>
-                    </textarea>
+                <input type='hidden' id='currentId'>
+                <textarea id='creator'>
+                </textarea>
+                <div id='postbuttons'>
                     <button type='button' id='submitPost' class='btn secondary'>Submit post</button>
+                    <button type='button' id='updatePost' class='btn secondary hidden'>Update Post</button>
+                    <button type='button' id='cancelPost' class='btn text-secondary'>Cancel</button>
+                </div>
             </form>
         </div>
         <div class='posts'>
@@ -55,5 +64,6 @@
     <script src="js/firebase-setup.js"></script>
     <script src="js/index.js"></script>
     <script src="js/index-animation.js"></script>
+    <script src="js/notifications.js"></script>
 </body>
 </html>

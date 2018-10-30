@@ -4,6 +4,8 @@
     --secondary: #f0e702;
     --gray: #333;
     --black: #191919;
+    --warning: #ddc248;
+    --danger: #cc2424;
 }
 
 html, body {
@@ -171,5 +173,5 @@ input {
 }
 
 input:invalid {
-    box-shadow: 0 0 10px #ca220c;
+    box-shadow: 0 0 10px var(--danger);
 }

@@ -4,6 +4,8 @@
     --secondary: #f0e702;
     --gray: #333;
     --black: #191919;
+    --warning: #ddc248;
+    --danger: #cc2424;
 }
 
 html, body {
@@ -13,6 +15,7 @@ html, body {
     height: 100vh;
     font-family: "Montserrat", sans-serif;
     color: var(--black);
+    overflow-x: hidden;
 }
 
 .hidden {
@@ -26,6 +29,21 @@ html, body {
     align-items: center;
     padding: 0 5%;
 
+}
+
+.alerts {
+    display: flex;
+    height: auto;
+    width: 100vw;
+    justify-content: center;
+}
+
+.alerts_warning {
+    background: var(--warning);
+    color: #66581c;
+    width: 100%;
+    text-align: center;
+    padding: 1% 0;
 }
 
 .container {
@@ -57,6 +75,10 @@ html, body {
 
 .text-primary {
     color: var(--primary);
+}
+
+.text-secondary {
+    color: var(--secondary);
 }
 
 .text-white {
@@ -116,7 +138,7 @@ label {
 
 .post {
     border-bottom: 2px solid var(--black);
-
+    padding-bottom: 2%;
 }
 
 .post:last-child {
