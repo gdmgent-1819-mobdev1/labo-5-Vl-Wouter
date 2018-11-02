@@ -5,11 +5,25 @@ const registerBtn = document.querySelector('#register #btn-register');
 const registerError = document.querySelector('#register .error');
 const goHome = document.querySelector('#goHome');
 const recoverBtn = document.querySelector('#sendHelp');
+const provider = new firebase.auth.GoogleAuthProvider();
+const googleBtn = document.querySelector('#btn-google');
 
 // Go Home function
 toIndex = () => {
    window.location.replace('../index.html'); 
 }
+
+// Google Log In
+googleLogIn = () => {
+    firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+        let token = result.credential.accessToken;
+        let user = result.user;
+        console.log(user);
+    })
+    .catch((error) => alert(error.message));
+}
+
 // Login and register functions
 loginUser = () => {
     const email = document.querySelector('#login #email').value;
@@ -65,3 +79,4 @@ goHome.addEventListener('click', toIndex);
 loginBtn.addEventListener('click', loginUser);
 registerBtn.addEventListener('click', registerUser);
 recoverBtn.addEventListener('click', recoverPass);
+googleBtn.addEventListener('click', googleLogIn);

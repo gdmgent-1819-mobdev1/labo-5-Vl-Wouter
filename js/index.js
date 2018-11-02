@@ -99,7 +99,9 @@ checkZero = (value) => {
 }
 
 // Re-send verification email
-verifyMe = () => {
+verifyMe = (event) => {
+    event.preventDefault();
+    console.log('Click!');
     firebase.auth().currentUser.sendEmailVerification()
     .then(() => {
         alertArea.innerHTML = ``;
@@ -197,7 +199,7 @@ document.addEventListener('click', (event) => {
             deletePost(post_id);
         }
         if(event.target.id == 'verifyMe') {
-            verifyMe();
+            verifyMe(event);
         }
         if(event.target.id == 'closeAlert') {
             alertArea.innerHTML = ``;
