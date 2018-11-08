@@ -13,7 +13,7 @@ let editor;
 logoutUser = () => {
     firebase.auth().signOut()
     .then(() =>{
-        fireNotification(`Signed out!`, `Thanks for your visit, we hope to see you back soon.`)
+        fireNotification(`Signed out!`, `Thanks for your visit, we hope to see you back soon.`);
         window.location.reload();
     })
     .catch(error => console.log(error.message));

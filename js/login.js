@@ -13,7 +13,7 @@ toIndex = () => {
    window.location.replace('../index.html'); 
 }
 
-// Google Log In
+// Google Log In (no idea if it works)
 googleLogIn = () => {
     firebase.auth().signInWithPopup(provider)
     .then((result) => {
@@ -26,8 +26,8 @@ googleLogIn = () => {
 
 // Login and register functions
 loginUser = () => {
-    const email = document.querySelector('#login #email').value;
-    const pass = document.querySelector('#login #pword').value;
+    const email = document.querySelector('#login #login_email').value;
+    const pass = document.querySelector('#login #login_pword').value;
 
     firebase.auth().signInWithEmailAndPassword(email, pass)
     .then(() => {
@@ -53,8 +53,8 @@ recoverPass = () => {
 
 // Register User
 registerUser = () => {
-    const email = document.querySelector('#register #email').value;
-    const pass = document.querySelector('#register #pword').value;
+    const email = document.querySelector('#register #reg_email').value;
+    const pass = document.querySelector('#register #reg_pword').value;
     const username = document.querySelector('#register #username').value;
     const auth = firebase.auth();
 
